@@ -18,26 +18,30 @@ def test_sending():
     browser.element('[value="1994"]').click()
     browser.element('.react-datepicker__day--003').click()
 
-    browser.element('#subjectsInput').type('All subjests').press_enter()
+    browser.element('#subjectsInput').type('Maths').press_enter()
     browser.element('//label[@for="hobbies-checkbox-1"]').click()
 
-    browser.element('#uploadPicture').set_value(os.path.abspath(
-        os.path.join(os.path.dirname(__file__), os.path.pardir, 'С/Users/annavishnyakova/Downloads/test.png')))
+    browser.element('#uploadPicture').set_value(
+        os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, 'files/test.png')))
 
-    browser.element('//textarea[@placeholder="Current Address"]').type('Москва Кузнецкий мост')
+    browser.element('//textarea[@placeholder="Current Address"]').type('Москва')
 
-    browser.element("//div[text()='NCR']").click().press_enter()
-    browser.element("//div[text()='Delhi']").click().press_enter()
+    browser.element('#react-select-3-input').type('Haryana').press_enter()
+    browser.element('#react-select-4-input').type('Panipat').press_enter()
 
-    browser.all('//div[@class="col-12 mt-4 col-md-6"]').should(have.texts(
-        'Anna',
-        'Vishnyakova',
+    browser.element('#submit').click()
+
+    browser.all('.table-responsive td:nth-child(2)').should(have.texts(
+        'Anna Vishnyakova',
         'mypochta@pochta.ru',
+        'Other',
         '89000000000',
         '03 July,1994',
+        'Maths',
+        'Sports',
         'test.png',
-        'Москва Кузнецкий мост'
-        'NCR Delhi'
+        'Москва',
+        'Haryana Panipat'
     ))
 
 

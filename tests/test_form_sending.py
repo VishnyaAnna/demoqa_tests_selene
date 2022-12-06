@@ -31,11 +31,11 @@ def test_sending():
 
     browser.element('#submit').press_enter()
 
-    browser.element('.table').should(have.texts(
+    browser.all('.table-responsive td:nth-child(2)').should(have.texts(
         'Anna Vishnyakova',
         'mypochta@pochta.ru',
         'Other',
-        '89000000000',
+        '8900000000',
         '03 July,1994',
         'Maths',
         'Sports',

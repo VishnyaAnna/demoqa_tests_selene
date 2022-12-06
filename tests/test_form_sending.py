@@ -29,9 +29,9 @@ def test_sending():
     browser.element('#react-select-3-input').type('Haryana').press_enter()
     browser.element('#react-select-4-input').type('Panipat').press_enter()
 
-    browser.element('#submit').click()
+    browser.element('#submit').press_enter()
 
-    browser.all('.table-responsive td:nth-child(2)').should(have.texts(
+    browser.element('.table').should(have.texts(
         'Anna Vishnyakova',
         'mypochta@pochta.ru',
         'Other',

@@ -1,6 +1,7 @@
 from selene.support.shared import browser
 import os
 from selene import have
+from modules.download_files import *
 
 
 def test_sending():

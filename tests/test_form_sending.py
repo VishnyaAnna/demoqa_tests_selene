@@ -1,58 +1,43 @@
-from selene.support.shared import browser
-import os
-from selene import have
-from modules.download_files import *
+from functions.download_files import *
+from functions.forms import *
+from functions.elements import *
 
 
 def test_sending():
-    browser.open('/automation-practice-form')
-    browser.element('//input[@placeholder="First Name"]').type('Anna')
-    browser.element('//input[@placeholder="Last Name"] ').type('Vishnyakova')
-    browser.element('//input[@placeholder="name@example.com"]').type('mypochta@pochta.ru')
-    browser.element('//label[text()="Other"]').click()
-    browser.element('//input[@placeholder="Mobile Number"]').type('89000000000')
+    open_page('/automation-practice-form')
+    data_entry('//input[@placeholder="First Name"]', 'Anna')
+    data_entry('//input[@placeholder="Last Name"] ', 'Vishnyakova')
+    data_entry('//input[@placeholder="name@example.com"]', 'mypochta@pochta.ru')
+    select_click('//label[text()="Other"]')
+    data_entry('//input[@placeholder="Mobile Number"]', '89000000000')
 
-    browser.element('#dateOfBirthInput').click()
-    browser.element('.react-datepicker__month-select').click()
-    browser.element('[value="6"]').click()
-    browser.element('.react-datepicker__year-select').click()
-    browser.element('[value="1994"]').click()
-    browser.element('.react-datepicker__day--003').click()
+    select_click('#dateOfBirthInput')
+    select_click('.react-datepicker__month-select')
+    select_click('[value="6"]')
+    select_click('.react-datepicker__year-select')
+    select_click('[value="1994"]')
+    select_click('.react-datepicker__day--003')
 
-    browser.element('#subjectsInput').type('Maths').press_enter()
-    browser.element('//label[@for="hobbies-checkbox-1"]').click()
+    selection_from_list('#subjectsInput', 'Maths')
+    select_click('//label[@for="hobbies-checkbox-1"]')
 
-    browser.element('#uploadPicture').set_value(
-        os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, 'files/test.png')))
+    download_files('#uploadPicture', 'files/test.png')
 
-    browser.element('//textarea[@placeholder="Current Address"]').type('Москва')
+    data_entry('//textarea[@placeholder="Current Address"]', 'Москва')
 
-    browser.element('#react-select-3-input').type('Haryana').press_enter()
-    browser.element('#react-select-4-input').type('Panipat').press_enter()
+    selection_from_list('#react-select-3-input', 'Haryana')
+    selection_from_list('#react-select-4-input', 'Panipat')
 
-    browser.element('#submit').press_enter()
+    selection_element('#submit')
 
-    browser.all('.table-responsive td:nth-child(2)').should(have.texts(
-        'Anna Vishnyakova',
-        'mypochta@pochta.ru',
-        'Other',
-        '8900000000',
-        '03 July,1994',
-        'Maths',
-        'Sports',
-        'test.png',
-        'Москва',
-        'Haryana Panipat'
-    ))
-
-
-
-
-
-
-
-
-
-
-
-
+    check_form('.table-responsive td:nth-child(2)',
+               'Anna Vishnyakova',
+               'mypochta@pochta.ru',
+               'Other',
+               '8900000000',
+               '03 July,1994',
+               'Maths',
+               'Sports',
+               'test.png',
+               'Москва',
+               'Haryana Panipat')

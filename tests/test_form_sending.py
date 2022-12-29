@@ -1,4 +1,4 @@
-from functions.forms import *
+from demoqa_tests_selene.model.pages.forms import *
 
 
 def test_sending():

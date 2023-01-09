@@ -1,4 +1,5 @@
 from demoqa_tests_selene.model.controls import dropdown, modal, datepicker, checkbox, radiobutton
+from demoqa_tests_selene.model.data.student import Student
 from demoqa_tests_selene.utils.path_files import *
 
 
@@ -62,7 +63,17 @@ def registration_form_validation(*value):
     modal.check_form('.table-responsive td:nth-child(2)', *value)
 
 
-
-
-
+def fill_form(student: Student):
+    set_name(student.first_name)
+    set_lastname(student.last_name)
+    set_mail(student.email)
+    set_gender(student.gender)
+    set_number(student.phone)
+    set_date_birth(student.birthday)
+    set_subjects(student.subject)
+    set_hobby(student.hobby)
+    upload_file(student.image)
+    set_address(student.address)
+    set_state(student.state)
+    set_city(student.city)
 

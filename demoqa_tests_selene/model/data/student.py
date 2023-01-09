@@ -6,9 +6,52 @@ from typing import Literal, List
 
 
 class Hobby(Enum):
-    Music = 1,
-    Reading = 2,
-    Sports = 3
+    Music = 'Music',
+    Reading = 'Reading',
+    Sports = 'Sports'
+
+
+class Gender(Enum):
+    Male = 'Male',
+    Female = 'Female',
+    Other = 'Other'
+
+
+class Subject(Enum):
+    Maths = 'Maths',
+    Accounting = 'Accounting',
+    Arts = 'Arts',
+    SocialStudies = 'Social Studies',
+    English = 'English',
+    Chemistry = 'Chemistry',
+    Physics = 'Physics',
+    ComputerScience = 'Computer Science',
+    Economics = 'Economics',
+    History = 'History',
+    Civics = 'Civics',
+    Commerce = 'Commerce',
+    Biology = 'Biology',
+    Hindi = 'Hindi'
+
+
+class State(Enum):
+    NCR = 'NCR',
+    UttarPradesh = 'Uttar Pradesh',
+    Haryana = 'Haryana',
+    Rajasthan = 'Rajasthan'
+
+
+class City(Enum):
+    Karnal = 'Karnal',
+    Panipat = 'Panipat',
+    Delhi = 'Delhi',
+    Gurgaon = 'Gurgaon',
+    Noida = 'Noida',
+    Agra = 'Agra',
+    Merrut = 'Merrut',
+    Lucknow = 'Lucknow',
+    Jaipur = 'Jaipur',
+    Jaiselmer = 'Jaiselmer'
 
 
 @dataclass
@@ -19,13 +62,8 @@ class Student:
     phone: str
     address: str
     birthday: datetime.date
-    gender: Literal['Male', 'Female', 'Other']
-    subject: Literal['Maths', 'Accounting', 'Arts', 'Social Studies', 'English', 'Chemistry', 'Physics',
-                     'Computer Science', 'Economics', 'History', 'Civics', 'Commerce', 'Biology', 'Hindi']
     hobby: List[Hobby]
     image: str
-    state: Literal['NCR', 'Uttar Pradesh', 'Haryana', 'Rajasthan']
-    city: Literal['Karnal', 'Panipat', 'Delhi', 'Gurgaon', 'Noida', 'Agra', 'Merrut', 'Lucknow', 'Jaipur', 'Jaiselmer']
 
 
 a_vishnyakova = Student(

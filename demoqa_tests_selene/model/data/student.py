@@ -12,9 +12,9 @@ class Hobby(Enum):
 
 
 class Gender(Enum):
-    Male = 'Male',
-    Female = 'Female',
-    Other = 'Other'
+    Male = 1,
+    Female = 2,
+    Other = 3
 
 
 class Subject(Enum):

@@ -12,9 +12,9 @@ class Hobby(Enum):
 
 
 class Gender(Enum):
-    Male = 1,
-    Female = 2,
-    Other = 3
+    Male = 'Male',
+    Female = 'Female',
+    Other = 'Other'
 
 
 class Subject(Enum):
@@ -65,7 +65,7 @@ class Student:
     hobby: List[Hobby]
     image: str
     gender: Gender
-    subject: List[Subject]
+    subjects: List[Subject]
     state: State
     city: City
 

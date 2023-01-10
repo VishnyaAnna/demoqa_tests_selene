@@ -1,5 +1,5 @@
 from demoqa_tests_selene.model.data.student import *
-from demoqa_tests_selene.model.pages.forms import *
+from demoqa_tests_selene.model.pages import practice_form
 
 
 def test_sending():
@@ -11,29 +11,18 @@ def test_sending():
         address='Москва',
         birthday=date(1994, 7, 3),
         gender=Gender.Female,
-        subject=[Subject.Maths],
-        hobby=[Hobby.Sports],
+        subjects=[Subject.Maths, Subject.Arts],
+        hobby=[Hobby.Sports, Hobby.Music],
         image='test.png',
         state=State.Haryana,
-        city=City.Panipat)
+        city=City.Panipat
+    )
 
-    open_form_registration()
-    fill_form(a_vishnyakova)
-    # set_name('Anna')
-    # set_lastname('Vishnyakova')
-    # set_mail('mypochta@pochta.ru')
-    # set_gender('Female')
-    # set_number('89000000000')
-    # set_date_birth('6', '1994', '3')
-    # set_subjects('Maths')
-    # set_hobby('Sports')
-    # upload_file('files/test.png')
-    # set_address('Москва')
-    # set_state('Haryana')
-    # set_city('Panipat')
-    sending_form()
+    practice_form.open()
+    practice_form.fill_data(a_vishnyakova)
+    practice_form.submit()
 
-    registration_form_validation('Anna Vishnyakova',
+    practice_form.validation_data('Anna Vishnyakova',
                                  'mypochta@pochta.ru',
                                  'Female',
                                  '8900000000',

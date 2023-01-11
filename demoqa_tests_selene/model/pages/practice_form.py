@@ -42,7 +42,7 @@ def set_hobby(hobby):
 
 
 def upload_file(file):
-    download_files('#uploadPicture', file)
+    path('#uploadPicture', file)
 
 
 def set_address(address):
@@ -54,7 +54,7 @@ def set_state(state):
 
 
 def set_city(city):
-    dropdown.selection_from_list('#react-select-4-input', city)
+    dropdown.selection_from_list('#react-select-4-input', city.value[0])
 
 
 def submit():

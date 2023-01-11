@@ -50,7 +50,7 @@ def set_address(address):
 
 
 def set_state(state):
-    dropdown.selection_from_list('#react-select-3-input', state)
+    dropdown.selection_from_list('#react-select-3-input', state.value[0])
 
 
 def set_city(city):

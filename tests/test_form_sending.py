@@ -1,7 +1,9 @@
+import allure
 from demoqa_tests_selene.model.data.student import *
 from demoqa_tests_selene.model.pages import practice_form
 
 
+@allure.tag("web")
 def test_sending():
     a_vishnyakova = Student(
         first_name='Anna',
@@ -18,17 +20,23 @@ def test_sending():
         city=City.Panipat
     )
 
-    practice_form.open()
-    practice_form.fill_data(a_vishnyakova)
-    practice_form.submit()
+    with allure.step('Открываем форму регистрации'):
+        practice_form.open()
 
-    practice_form.validation_data('Anna Vishnyakova',
-                                 'mypochta@pochta.ru',
-                                 'Female',
-                                 '8900000000',
-                                 '03 July,1994',
-                                 'Maths, Arts',
-                                 'Sports, Music',
-                                 'test.png',
-                                 'Москва',
-                                 'Haryana Panipat')
+    with allure.step('Заполняем данные'):
+        practice_form.fill_data(a_vishnyakova)
+
+    with allure.step('Отправляем форму'):
+        practice_form.submit()
+
+    with allure.step('Проверяем форму'):
+        practice_form.validation_data('Anna Vishnyakova',
+                                      'mypochta@pochta.ru',
+                                      'Female',
+                                      '8900000000',
+                                      '03 July,1994',
+                                      'Maths, Arts',
+                                      'Sports, Music',
+                                      'test.png',
+                                      'Москва',
+                                      'Haryana Panipat')

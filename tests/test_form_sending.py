@@ -3,7 +3,7 @@ from demoqa_tests_selene.model.data.student import *
 from demoqa_tests_selene.model.pages import practice_form
 
 
-@allure.tag("web")
+@allure.title("demoqa форма регистрации")
 def test_sending():
     a_vishnyakova = Student(
         first_name='Anna',

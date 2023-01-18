@@ -1,10 +1,32 @@
 import allure
+
 from demoqa_tests_selene.model.data.student import *
 from demoqa_tests_selene.model.pages import practice_form
+from allure_commons._allure import attach
+from demoqa_tests_selene.utils import attach
+from selene.support.shared import browser
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 
 @allure.title("demoqa форма регистрации")
 def test_sending():
+    options = Options()
+    selenoid_capabilities = {
+        "browserName": "chrome",
+        "browserVersion": "100.0",
+        "selenoid:options": {
+            "enableVNC": True,
+            "enableVideo": False
+        }
+    }
+    options.capabilities.update(selenoid_capabilities)
+
+    driver = webdriver.Remote(
+        command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
+        options=options)
+    browser.config.driver = driver
+
     a_vishnyakova = Student(
         first_name='Anna',
         last_name='Vishnyakova',
@@ -40,3 +62,7 @@ def test_sending():
                                       'test.png',
                                       'Москва',
                                       'Haryana Panipat')
+
+    attach.add_html(browser)
+    attach.add_screenshot(browser)
+    attach.add_logs(browser)

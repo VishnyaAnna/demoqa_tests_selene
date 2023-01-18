@@ -1,4 +1,3 @@
-import files
 from selene.support.shared import browser
 import os
 

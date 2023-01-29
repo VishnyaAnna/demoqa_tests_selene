@@ -1,5 +1,11 @@
-from selene.support.shared import browser
+from selene import have
 
 
-def selection_from_list(element, value):
-    browser.element(element).type(value).press_enter()
+class Dropdown:
+    def __init__(self, element, elements):
+        self.element = element
+        self.elements = elements
+
+    def select(self, value):
+        self.element.click()
+        self.elements.element_by(have.exact_text(value)).click()

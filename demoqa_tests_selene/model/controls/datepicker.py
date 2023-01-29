@@ -1,10 +1,15 @@
-from selene.support.shared import browser
+import datetime
+import sys
+
+from selenium.webdriver import Keys
+
+from demoqa_tests_selene.utils import config
 
 
-def set_date_birth(month, year, day):
-    browser.element('#dateOfBirthInput').click()
-    browser.element('.react-datepicker__month-select').click()
-    browser.element(f'[value="{month}"]').click()
-    browser.element('.react-datepicker__year-select').click()
-    browser.element(f'[value="{year}"]').click()
-    browser.element(f'.react-datepicker__day--00{day}').click()
+class Datepicker:
+    def __init__(self, element):
+        self.element = element
+
+    def select_date(self, date: datetime.date):
+        self.element.send_keys(Keys.COMMAND if sys.platform == 'darwin' else Keys.CONTROL, 'a').type(
+            date.strftime(config.datetime_input_format)).press_enter()

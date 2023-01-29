@@ -1,80 +1,107 @@
-from demoqa_tests_selene.model.controls import dropdown, modal, datepicker, checkbox, radiobutton
-from demoqa_tests_selene.model.data.student import Student
-from demoqa_tests_selene.utils.path_files import *
+import datetime
+from typing import List
+
+from selene import have, command
+from selene.support.shared import browser
+from demoqa_tests_selene.model.controls.radiobutton import Radiobutton
+from demoqa_tests_selene.model.controls.checkbox import Checkbox
+from demoqa_tests_selene.model.controls.dropdown import Dropdown
+from demoqa_tests_selene.model.controls.datepicker import Datepicker
+from demoqa_tests_selene.model.data.user import Gender, State, City, User
+from demoqa_tests_selene.utils.path_files import path
 
 
-def open():
-    browser.open('/automation-practice-form')
+class Practice_form:
+    def open_page(self):
+        browser.open('/automation-practice-form')
+        ads = browser.all('[id^=google_ads_][id$=container__]')
+        ads.with_(timeout=10).should(have.size_greater_than_or_equal(3)).perform(
+            command.js.remove)
+        return self
 
+    def first_name(self, first_name: str):
+        browser.element('#firstName').type(first_name)
+        return self
 
-def set_name(value):
-    browser.element('//input[@placeholder="First Name"]').type(value)
+    def last_name(self, last_name: str):
+        browser.element('#lastName').type(last_name)
+        return self
 
+    def full_contact(self, email: str, phone: str):
+        browser.element('#userEmail').type(email)
+        browser.element('#userNumber').type(phone)
+        return self
 
-def set_lastname(value):
-    browser.element('//input[@placeholder="Last Name"] ').type(value)
+    def select_gender(self, student_gender: Gender):
+        gender = Radiobutton(browser.all('[name=gender]'))
+        gender.select_value(student_gender.value)
+        return self
 
+    def date_birthday(self, birthday: datetime.date):
+        birthday_datepicker = Datepicker(browser.element('#dateOfBirthInput'))
+        birthday_datepicker.select_date(birthday)
+        return self
 
-def set_mail(value):
-    browser.element('//input[@placeholder="name@example.com"]').type(value)
+    def subject(self, subject: List):
+        for elem in subject:
+            browser.element('#subjectsInput').type(elem.value).press_enter()
+        return self
 
+    def set_hobbies(self, hobbies: List):
+        set_hobbies = Checkbox(browser.all('[for^="hobbies-checkbox"]'))
+        set_hobbies.select_hobbies(hobbies)
+        return self
 
-def set_gender(gender):
-    radiobutton.set_value(browser.all('[name=gender]'), gender.value[0])
+    def scrool_page(self):
+        browser.element('#state').perform(command.js.scroll_into_view)
 
+    def insert_picture(self, file: str):
+        path('#uploadPicture', file)
+        return self
 
-def set_number(number):
-    browser.element('//input[@placeholder="Mobile Number"]').type(number)
+    def full_address(self, address):
+        browser.element('#currentAddress').set_value(address)
+        return self
 
+    def select_state(self, state: State):
+        dropdown = Dropdown(browser.element('#state'), browser.all('[id^=react-select][id*=option]'))
+        dropdown.select(state.value)
+        return self
 
-def set_date_birth(birthday):
-    datepicker.set_date_birth(day=birthday.day, month=birthday.month, year=birthday.year)
+    def select_city(self, city: City):
+        dropdown = Dropdown(browser.element('#city'), browser.all('[id^=react-select][id*=option]'))
+        dropdown.select(city.value)
+        return self
 
+    def submit(self):
+        browser.element('#submit').press_enter()
 
-def set_subjects(subjects):
-    for r in subjects:
-        browser.element('#subjectsInput').type(r.value[0]).press_enter()
+    def fill_form(self, student: User):
+        self.first_name(student.first_name)
+        self.last_name(student.last_name)
+        self.full_contact(student.email, student.phone_number)
+        self.select_gender(student.gender)
+        self.date_birthday(student.birthday)
+        self.subject(student.subject)
+        self.set_hobbies(student.hobbies)
+        self.scrool_page()
+        self.insert_picture(student.picture)
+        self.full_address(student.address)
+        self.select_state(student.state)
+        self.select_city(student.city)
+        self.submit()
 
-
-def set_hobby(hobby):
-    for r in hobby:
-        checkbox.checkboxes_click(browser.all('[for^=hobbies-checkbox]'), r.value[0])
-
-
-def upload_file(file):
-    path('#uploadPicture', file)
-
-
-def set_address(address):
-    browser.element('//textarea[@placeholder="Current Address"]').type(address)
-
-
-def set_state(state):
-    dropdown.selection_from_list('#react-select-3-input', state.value[0])
-
-
-def set_city(city):
-    dropdown.selection_from_list('#react-select-4-input', city.value[0])
-
-
-def submit():
-    browser.element('#submit').press_enter()
-
-
-def validation_data(*value):
-    modal.check_form('.table-responsive td:nth-child(2)', *value)
-
-
-def fill_data(student: Student):
-    set_name(student.first_name)
-    set_lastname(student.last_name)
-    set_mail(student.email)
-    set_gender(student.gender)
-    set_number(student.phone)
-    set_date_birth(student.birthday)
-    set_subjects(student.subjects)
-    set_hobby(student.hobby)
-    upload_file(student.image)
-    set_address(student.address)
-    set_state(student.state)
-    set_city(student.city)
+    @classmethod
+    def assert_registration_student(cls, student):
+        browser.element('.table').all('td').even.should(
+            have.texts(
+                f'{student.first_name} {student.last_name}',
+                student.email,
+                student.gender.value,
+                student.phone_number,
+                student.birthday.strftime('%d %B,%Y'),
+                ', '.join(subject.value for subject in student.subject),
+                ', '.join(hobbies.value for hobbies in student.hobbies),
+                student.picture.split('/')[-1],
+                student.address,
+                f'{student.state.value} {student.city.value}'))

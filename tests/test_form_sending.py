@@ -1,34 +1,24 @@
-from demoqa_tests_selene.model.data.student import *
-from demoqa_tests_selene.model.pages import practice_form
+import datetime
+
+from demoqa_tests_selene.model.data.user import User, State, City, Subject, Gender, Hobbies
+from demoqa_tests_selene.model.pages.practice_form import Practice_form
 
 
-def test_sending():
-    a_vishnyakova = Student(
-        first_name='Anna',
-        last_name='Vishnyakova',
-        email='mypochta@pochta.ru',
-        phone='89000000000',
-        address='Москва',
-        birthday=date(1994, 6, 3),
-        gender=Gender.Female,
-        subjects=[Subject.Maths, Subject.Arts],
-        hobby=[Hobby.Sports, Hobby.Music],
-        image='test.png',
-        state=State.Haryana,
-        city=City.Panipat
-    )
+def test_student_registration():
+    student = User(first_name='Anna',
+                   last_name='Vishnyakova',
+                   email='anna@gmail.com',
+                   phone_number='80000000000',
+                   birthday=datetime.date(1994, 7, 3),
+                   subject=[Subject.Arts, Subject.Maths],
+                   gender=Gender.Male,
+                   hobbies=[Hobbies.Sports, Hobbies.Music],
+                   picture='test.png',
+                   address='Moscow',
+                   state=State.Uttar_Pradesh,
+                   city=City.Lucknow)
+    automation_form = Practice_form()
+    automation_form.open_page()
+    automation_form.fill_form(student)
 
-    practice_form.open()
-    practice_form.fill_data(a_vishnyakova)
-    practice_form.submit()
-
-    practice_form.validation_data('Anna Vishnyakova',
-                                 'mypochta@pochta.ru',
-                                 'Female',
-                                 '8900000000',
-                                 '03 July,1994',
-                                 'Maths, Arts',
-                                 'Sports, Music',
-                                 'test.png',
-                                 'Москва',
-                                 'Haryana Panipat')
+    automation_form.assert_registration_student(student)

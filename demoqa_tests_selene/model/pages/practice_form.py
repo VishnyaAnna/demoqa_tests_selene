@@ -14,9 +14,6 @@ from demoqa_tests_selene.utils.path_files import path
 class Practice_form:
     def open_page(self):
         browser.open('/automation-practice-form')
-        ads = browser.all('[id^=google_ads_][id$=container__]')
-        ads.with_(timeout=10).should(have.size_greater_than_or_equal(3)).perform(
-            command.js.remove)
         return self
 
     def first_name(self, first_name: str):

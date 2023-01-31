@@ -8,7 +8,7 @@ def test_student_registration():
     student = User(first_name='Anna',
                    last_name='Vishnyakova',
                    email='anna@gmail.com',
-                   phone_number='80000000000',
+                   phone_number='8000000000',
                    birthday=datetime.date(1994, 7, 3),
                    subject=[Subject.Arts, Subject.Maths],
                    gender=Gender.Male,

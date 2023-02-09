@@ -4,9 +4,9 @@
     "project": "some project",
     "environment": "some env",
     "comment": "some comment",
-    "reportLink": "https://jenkins.autotests.cloud/job/tests_vishnyakova/allure",
+    "reportLink": "",
     "language": "en",
-    "allureFolder": "allure-report/",
+    "allureFolder": "https://jenkins.autotests.cloud/job/tests_vishnyakova/allure",
     "enableChart": true
   },
   "telegram": {

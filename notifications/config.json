@@ -4,7 +4,7 @@
     "project": "some project",
     "environment": "some env",
     "comment": "some comment",
-    "reportLink": "",
+    "reportLink": "https://jenkins.autotests.cloud/job/tests_vishnyakova/allure",
     "language": "en",
     "allureFolder": "allure-report/",
     "enableChart": true

@@ -13,8 +13,6 @@
   <code><img width="5%" title="GitHub" src="./attachments/logo/github.png"></code>
   <code><img width="5%" title="Allure Report" src="./attachments/logo/allure_report.png"></code>
   <code><img width="5%" title="Jenkins" src="./attachments/logo/jenkins.png"></code>
-  <code><img width="5%" title="Requests" src="./attachments/logo/requests.png"></code>
-  <code><img width="10%" title="Requests" src="./attachments/logo/Instrument-Allure-TestOps.png"></code>
 </p>
 
 ### Что выполняет тест:
@@ -26,7 +24,7 @@
 
 ### Запуск проекта в Jenkins
 
-### [Job](https://jenkins.autotests.cloud/job/Api_tests_Vishnyakova/)
+### [Job](https://jenkins.autotests.cloud/job/tests_vishnyakova/)
 
 ##### При нажатии на "Собрать сейчас" начнется сборка тестов и их прохождение
 ![This is an image](attachments/screenshots/jenkins.png)

@@ -78,3 +78,11 @@ def fill_data(student: Student):
     set_address(student.address)
     set_state(student.state)
     set_city(student.city)
+
+
+def required_fields_data(student: Student):
+    set_name(student.first_name)
+    set_lastname(student.last_name)
+    set_gender(student.gender)
+    set_number(student.phone)
+    set_date_birth(student.birthday)

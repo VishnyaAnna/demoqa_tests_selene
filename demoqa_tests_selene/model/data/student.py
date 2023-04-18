@@ -70,16 +70,4 @@ class Student:
     city: City
 
 
-# a_vishnyakova = Student(
-#     first_name='Anna',
-#     last_name='Vishnyakova',
-#     email='mypochta@pochta.ru',
-#     phone='89000000000',
-#     address='Москва',
-#     birthday=date(1994, 7, 3),
-#     gender= Gender.Female,
-#     subject=[Subject.Maths],
-#     hobby=[Hobby.Sports],
-#     image='test.png',
-#     state=State.Haryana,
-#     city=City.Panipat)
+

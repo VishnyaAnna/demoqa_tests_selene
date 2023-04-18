@@ -1,6 +1,5 @@
 from selene.support.shared import browser
 import os
-
 import tests
 
 

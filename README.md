@@ -36,5 +36,18 @@
 ##### После прохождения тестов, результаты автоматически сохраняются. Чтобы посмотреть Allure отчет нужно нажать на иконке allure report у сборки.
 ![This is an image](attachments/screenshots/allure.png)
 
+##### В Allure отчёте можно просмотреть видео прохождения теста
+
+![Watch the video](attachments/video/test.mp4)
+
+<!-- Telegram report -->
+
+### <img width="4%" title="Telegram" src="attachments/logo/telegram_bot.png"> Telegram bot
+
+##### После прохождения тестов, отчёт будет отправлен уведомлением в telegram чат
+![This is an image](attachments/screenshots/telegram.png)
+
+
+
 
  

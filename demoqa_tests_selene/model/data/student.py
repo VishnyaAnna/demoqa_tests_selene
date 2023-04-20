@@ -68,6 +68,3 @@ class Student:
     subjects: List[Subject]
     state: State
     city: City
-
-
-

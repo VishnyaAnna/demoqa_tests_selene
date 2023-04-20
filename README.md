@@ -36,7 +36,7 @@
 ##### После прохождения тестов, результаты автоматически сохраняются. Чтобы посмотреть Allure отчет нужно нажать на иконке allure report у сборки.
 ![This is an image](attachments/screenshots/allure.png)
 
-##### В Allure отчёте можно просмотреть видео прохождения теста
+##### В Allure отчёте можно просмотреть видео о прохождении теста
 
 ![This is an image](attachments/video/test.gif)
 

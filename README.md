@@ -38,7 +38,7 @@
 
 ##### В Allure отчёте можно просмотреть видео прохождения теста
 
-![Watch the video](attachments/video/test.mp4)
+![This is an video](attachments/video/test.gif)
 
 <!-- Telegram report -->
 
